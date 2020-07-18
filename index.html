@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add icon library -->
+    <link rel="stylesheet"type="text/css" href="celeb.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Celebrities Wikipedia</title>
+</head>
+<script src="jquery.js"></script>
+
+<!-- <style>
+    body {
+        margin: 0;
+        font-family: monospace;
+        color: black;
+        transition: background-color .5s;
+    }
+
+    .full {
+        background-image: url("https://visme.co/blog/wp-content/uploads/2020/03/Header-14.jpg");
+        /* background-color: #cccccc; */
+        height: 550px;
+        /* background-position: center; */
+        background-repeat: no-repeat;
+        /* background-size: cover; */
+        position: relative;
+
+
+    }
+
+    .topnav {
+        overflow: hidden;
+    }
+
+    .topnav a {
+        float: right;
+        color: #24190f86;
+        text-align: center;
+        padding: 10px 12px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .topnav a:hover {
+        background-color: rgba(3, 3, 3, 0.24);
+        color: black;
+    }
+
+    .topnav a.active {
+        background-color: #2903e6;
+        color: rgb(189, 42, 42);
+    }
+
+    .btn {
+        float: left;
+        /* background-color: black; */
+        overflow: hidden;
+        border: none;
+        padding: 12px 16px;
+        font-size: 16px;
+        /* cursor: pointer; */
+    }
+
+    .btn:hover {
+        background-color: rgb(221, 221, 221);
+        color: rgba(0, 0, 0, 0.226);
+    }
+
+    .search-box {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.74);
+    }
+
+    .container {
+        width: 200px;
+        /* border: 1px solid black; */
+        padding: 0px 25px 20px 25px;
+        background-color: rgba(175, 120, 73, 0.486);
+        position: absolute;
+        border-radius: 25px;
+        top: 150px;
+    }
+
+    .container-footer {
+        position: absolute;
+        bottom: 10px;
+        right: 50px;
+        /* background-color: aquamarine; */
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: rgba(223, 213, 204, 0.486);
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .details {
+        display: block;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    #main {
+        transition: margin-left .5s;
+
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .myDIV:hover+.hide {
+        display: block;
+        color: rgba(17, 17, 17, 0.856);
+    }
+
+    .hidePrecautionSteps {
+        display: none;
+    }
+
+    .myDIV1:hover+.hidePrecautionSteps {
+        display: block;
+        color: rgba(17, 17, 17, 0.856);
+    }
+
+
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+    }
+</style> -->
+
+<!-- <script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+
+    }
+
+    async function getCovidData() {
+        document.getElementById("result").style.display = "block";
+
+        var country = document.getElementById("celeb").value;
+        console.log(country)
+        const jsodData = await fetch('https://api.covid19api.com/summary');
+        const jsData = await jsodData.json();
+        var json = jsData.Countries
+        var length = Object.keys(json).length;
+        for (i = 0; i < length; i++) {
+            var jsonCountry = jsData.Countries[i].Country
+            var comp = country.toLocaleLowerCase().trim().localeCompare(jsonCountry.toLowerCase().trim())
+            if (comp == 0) {
+                if (document.getElementById("updates").value == "ConfirmedCases") {
+                    console.log(jsonCountry)
+                    document.getElementById("result").innerHTML = `In ${jsonCountry}`
+                        + ` Confirmed Cases are <Strong>${jsData.Countries[i].NewConfirmed}<Strong>`
+                        + ` and TotalCOnfirmed Cases up to ${jsData.Countries[i].Date.slice(0, 10)} are <Strong>${jsData.Countries[i].TotalConfirmed}<Strong>`
+                    break;
+                }
+                else if (document.getElementById("updates").value == "Death") {
+                    console.log(jsonCountry)
+                    document.getElementById("result").innerHTML = `In ${jsonCountry} `
+                        + `  People Died  are <Strong>${jsData.Countries[i].NewDeaths}<Strong>`
+                        + ` and Total Deaths up to ${jsData.Countries[i].Date} are <Strong>${jsData.Countries[i].TotalDeaths}<Strong>`
+                    break;
+                }
+                else if (document.getElementById("updates").value == "RecoveredCases") {
+                    console.log(jsonCountry)
+                    document.getElementById("result").innerHTML = `In ${jsonCountry} `
+                        + ` Recovered Cases are <Strong>${jsData.Countries[i].NewRecovered}<Strong>`
+                        + ` and TotalCOnfirmed up to ${jsData.Countries[i].Date} are <Strong>${jsData.Countries[i].TotalRecovered}<Strong>`
+                    break;
+                }
+                else {
+                    document.getElementById("result").innerHTML = `Please Select proper value!!`
+                }
+            }
+            else {
+                document.getElementById("result").innerHTML = `Please Provide a proper input!!!`;
+            }
+        }
+    }
+    function about() {
+        document.getElementById("whole").style.display = "block";
+        document.getElementById("whole").innerHTML = `<strong>Facts About Covid19:</strong>`
+            + `Severe Acute Respiratory Syndrome `
+            + `Coronavirus-2 (SARS-CoV-2) is the name given to `
+            + `the 2019 novel coronavirus. COVID-19 is the name given to the disease associated with the virus. SARS-CoV-2 is a new strain of coronavirus that has not been previously identified in humans.`;
+    }
+</script> -->
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <div class="myDIV"><a href=# style="font-size: 20px;">History Of COVID19</a></div>
+        <div class="hide" style="padding: 0px 10px 10px 0px; font-style: italic;border-radius: 10px 10px 10px 10px;">On
+            31 December 2019,
+            the World Health Organization (WHO) was formally notified about a cluster of cases of pneumonia in Wuhan
+            City,
+            home to 11 million people and the cultural and economic hub of central China.
+            By 5 January, 59 cases were known and none had been fatal
+            Ten days later, WHO was aware of 282 confirmed cases,
+            of which four were in Japan, South Korea and Thailand
+            There had been six deaths in Wuhan, 51 people were severely ill and 12 were in a critical condition.
+            The virus responsible was isolated on 7 January and its genome shared on 12 January
+            The cause of the severe acute respiratory syndrome that became known as COVID‐19 was a novel coronavirus,
+            SARS‐CoV‐2.</div>
+        <div class="myDIV"><a href="#" style="font-size: 20px;">Precaution Steps</a></div>
+        <div class="hide" style="padding: 0px 10px 10px 0px; font-style: italic;border-radius: 10px 10px 10px 10px;">
+            <ul>
+                <li>Keep things clean</li>
+                <li>Wear a cloth face mask</li>
+                <li>Avoid close contact</li>
+                <li>Restrict your travel</li>
+            </ul>
+        </div>
+        <div class=myDIV><a href="#" style="font-size: 20px;">Help Line</a></div>
+        <div class="hide" style="padding: 0px 10px 10px 0px; font-style: italic;border-radius: 10px 10px 10px 10px;">
+            <ul>
+                <li>Tamil Nadu 044-29510500
+                </li>
+                <li>Kerala 0471-2552056</li>
+                <li>Karnataka 104</li>
+                <li>Uttar Pradesh 18001805145
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class=whole-page id="main">
+        <div class="full">
+            <div class="topnav">
+                <a href="#home" onclick="about()">About</a>
+                <a href="#home" onclick="document.location.reload(true)">Home</a>
+                <!-- <button class="btn"><i class="fa fa-bars"></i></button> -->
+                <span style="font-size:20px;cursor:pointer;color: #24190f86;" onclick="openNav()">&#9776; ForMore!!</span>
+            </div>
+            <div id="whole" class="about"
+                style=" display: none;font-size: 18px; background-color: rgba(175, 120, 73, 0.486);width: 300px;padding: 10px 25px 25px 25px;position: absolute;bottom: 200px; left:360px; border-radius: 25px;">
+
+            </div>
+
+            <div id="result" class="result"
+                style="display: none;font-size: 18px; background-color: rgba(175, 120, 73, 0.486);width: 300px;padding: 10px 25px 25px 25px;position: absolute;bottom: 60px; left:360px; border-radius: 25px;">
+
+            </div>
+
+            <div class="container">
+                <div id="headers" class="jumbo">
+                    <h1>Welcome to our page!!</h1>
+                    <p style="font-size: 18px;">In this you can get update about <b>COVID19</b> happening around the
+                        world
+                    </p>
+                </div>
+                <form onsubmit="getCovidData();">
+                    <div class="search-box">
+                        <strong style="color: rgb(18, 29, 27);"> Country Name </strong>
+                        <div class="input">
+                            <input type="text" name="input" id="celeb" placeholder="Enter the Celebrity name" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="option-selection">
+                        <select class="dropdown" id="updates" required>
+                            <option value="">--Select--</option>
+                            <option value="ConfirmedCases">ConfirmedCases</option>
+                            <option value="Death">Death</option>
+                            <option value="RecoveredCases">RecoveredCases</option>
+                        </select>
+                    </div>
+                    <br>
+                    <input type="submit" value="Get Details">
+                    <!-- <script src="m.html"></script> -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-footer" style=" background-color: rgba(202, 243, 255, 0.986);word-spacing: 10px;">
+        <a href="https://mail.google.com/mail/u/0/?tab=rm#inbox?compose=GTvVlcSGLBsNjnNkWDLbMThPlMMxDTpcxTrHfqNLpXkMccQLHdGFzGRnLRtqrQHMdwVhgBMjSgvjw"
+            target="_blank" rel="noopener noreferrer">
+            <i style="font-size:24px;" class="fa">&#xf0e0;</i>
+        </a>
+
+
+        <br>
+        <a href="https://www.linkedin.com/in/durai-murugan-b43495170/" target="_blank" rel="noopener noreferrer">
+            <i style="font-size:24px;" class="fa">&#xf08c;</i>
+        </a>
+        <br>
+        <a href="#">
+            <i style="font-size:24px;" class="fa">&#xf2b9;</i>
+        </a>
+    </div>
+    <div class=copyright
+        style=" background-color: rgba(202, 243, 255, 0.986); padding: 100px 434px 60px 700px ;width: 400px;">
+        <p>© 2020 Designed and developed by Durai</p>
+    </div>
+    </div>
+</body>
+</html>

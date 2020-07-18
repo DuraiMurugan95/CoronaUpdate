@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    font-family: monospace;
+    color: black;
+    /* transition: background-color .5s; */
+}
+
+.full {
+    background-image: url("https://visme.co/blog/wp-content/uploads/2020/03/Header-14.jpg");
+    /* background-color: #cccccc; */
+    height: 550px;
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    /* background-size: cover; */
+    position: relative;
+
+
+}
+
+/* .topnav {
+    overflow: hidden;
+} */
+
+.topnav a {
+    float: right;
+    color: #24190f86;
+    text-align: center;
+    padding: 10px 12px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: rgba(3, 3, 3, 0.24);
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #2903e6;
+    color: rgb(189, 42, 42);
+}
+
+.btn {
+    float: left;
+    /* background-color: black; */
+    overflow: hidden;
+    border: none;
+    padding: 12px 16px;
+    font-size: 16px;
+    /* cursor: pointer; */
+}
+
+.btn:hover {
+    background-color: rgb(221, 221, 221);
+    color: rgba(0, 0, 0, 0.226);
+}
+
+.search-box {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.74);
+}
+
+.container {
+    width: 200px;
+    /* border: 1px solid black; */
+    padding: 0px 25px 20px 25px;
+    background-color: rgba(175, 120, 73, 0.486);
+    position: absolute;
+    border-radius: 25px;
+    top: 150px;
+}
+
+.container-footer {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    /* background-color: aquamarine; */
+}
+
+.sidenav {
+    height: 100%;
+    width: 0; 
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(223, 213, 204, 0.486);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .details {
+    display: block;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+
+}
+
+.hide {
+    display: none;
+}
+
+.myDIV:hover+.hide {
+    display: block;
+    color: rgba(17, 17, 17, 0.856);
+}
+
+.hidePrecautionSteps {
+    display: none;
+}
+
+.myDIV1:hover+.hidePrecautionSteps {
+    display: block;
+    color: rgba(17, 17, 17, 0.856);
+}
+
+
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
